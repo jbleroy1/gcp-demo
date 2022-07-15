@@ -1,6 +1,8 @@
 # Compiled class file
 *.class
-
+*/target
+.vscode
+*.apt_generated*
 # Log file
 *.log
 
