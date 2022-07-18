@@ -1,0 +1,9 @@
+steps:
+- id: docker build
+  name: 'gcr.io/cloud-builder/docker'
+  args: ['build', '-t', 'gcr.io/meta-yen-311209/quarkus-rest-demo', '.']
+
+images:
+- 'gcr.io/meta-yen-311209/quarkus-rest-demo'
+options:
+  machineType: E2_HIGHCPU_32
