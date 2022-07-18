@@ -1,10 +1,10 @@
 steps:
-- id: docker build
-  name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/meta-yen-311209/quarkus-rest-demo', './src/main/docker/Dockerfile.native']
-
-
+- id: Compile native app
+  name: 'europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/builder-quarkus'
+  args: ['package', '-Pnative', '-Dquarkus.container-image.build=true']
+  env:
+    - 'quarkus.container-image.name=europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/quarkus-demo-rest'
 images:
-- 'gcr.io/meta-yen-311209/quarkus-rest-demo'
+- 'quarkus.container-image.name=europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/quarkus-demo-rest'
 options:
   machineType: E2_HIGHCPU_32
