@@ -1,0 +1,8 @@
+steps:
+- id: docker build
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/builder-quarkus', '.']
+images:
+- 'europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/builder-quarkus'
+options:
+  machineType: E2_HIGHCPU_32

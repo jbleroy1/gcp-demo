@@ -1,7 +1,8 @@
 steps:
 - id: docker build
   name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/meta-yen-311209/quarkus-rest-demo', '.']
+  args: ['build', '-t', 'gcr.io/meta-yen-311209/quarkus-rest-demo', './src/main/docker/Dockerfile.native']
+
 
 images:
 - 'gcr.io/meta-yen-311209/quarkus-rest-demo'
