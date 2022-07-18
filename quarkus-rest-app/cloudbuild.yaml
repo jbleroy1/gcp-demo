@@ -1,7 +1,7 @@
 steps:
 - id: Compile native app
   name: 'europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/builder-quarkus'
-  args: ['package', '-Pnative', '-Dquarkus.container-image.build=true']
+  args: ['package', '-f','./quarkus-rest-app/pom.xml','-Pnative', '-Dquarkus.container-image.build=true']
   env:
     - 'quarkus.container-image.name=europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/quarkus-demo-rest'
 images:
