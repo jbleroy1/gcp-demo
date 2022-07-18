@@ -8,6 +8,7 @@ ARG MAVEN_VERSION="3.6.3"
 ENV SDKMAN_DIR=/root/.sdkman
 
 COPY entrypoint.sh /root
+RUN chmod 777 /root/entrypoint.sh
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends tzdata curl zip unzip build-essential libz-dev zlib1g-dev ca-certificates fontconfig locales \
