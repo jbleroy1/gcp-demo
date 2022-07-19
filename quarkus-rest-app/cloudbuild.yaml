@@ -8,6 +8,6 @@ steps:
   name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t','europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/quarkus-demo-rest','-f', 'quarkus-rest-app/src/main/docker/Dockerfile.native','./quarkus-rest-app']
 images:
-- 'quarkus.container-image.name=europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/quarkus-demo-rest'
+- 'europe-west2-docker.pkg.dev/meta-yen-311209/docker-registry/quarkus-demo-rest'
 options:
   machineType: E2_HIGHCPU_32
