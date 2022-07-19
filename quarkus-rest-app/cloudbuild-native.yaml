@@ -18,7 +18,7 @@ steps:
    - 'deploy'
    - 'quarkus-native-app'
    - '--image'
-   - 'europe-west2-docker.pkg.dev/$PROJECT_ID/docker-registry/quarkus-demo-rest:${_PREFIX_}-$COMMIT_SH'
+   - 'europe-west2-docker.pkg.dev/$PROJECT_ID/docker-registry/quarkus-demo-rest:${_PREFIX_}-$COMMIT_SHA'
    - '--region'
    - 'europe-west2'
 images:
