@@ -1,0 +1,27 @@
+steps:
+- id: Compile native app
+  name: 'europe-west2-docker.pkg.dev/$PROJECT_ID/docker-registry/builder-quarkus'
+  args: ['package', '-f','./quarkus-rest-app/pom.xml','-Pnative', '-Dquarkus.container-image.build=true']
+  env:
+    - 'quarkus.container-image.name=europe-west2-docker.pkg.dev/$PROJECT_ID/docker-registry/quarkus-demo-rest'
+- id: Build native docker image
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t','europe-west2-docker.pkg.dev/$PROJECT_ID/docker-registry/quarkus-demo-rest:${_PREFIX_}-$COMMIT_SHA','-f', 'quarkus-rest-app/src/main/docker/Dockerfile.native','./quarkus-rest-app']
+- id: Push native docker image
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'europe-west2-docker.pkg.dev/$PROJECT_ID/docker-registry/quarkus-demo-rest:${_PREFIX_}-$COMMIT_SHA']
+- id: Deploy Cloud Run
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+   - 'run'
+   - 'deploy'
+   - 'quarkus-native-app'
+   - '--image'
+   - 'europe-west2-docker.pkg.dev/$PROJECT_ID/docker-registry/quarkus-demo-rest:${_PREFIX_}-$COMMIT_SHA'
+   - '--region'
+   - 'europe-west2'
+images:
+- 'europe-west2-docker.pkg.dev/$PROJECT_ID/docker-registry/quarkus-demo-rest:${_PREFIX_}-$COMMIT_SHA'
+options:
+  machineType: E2_HIGHCPU_32
