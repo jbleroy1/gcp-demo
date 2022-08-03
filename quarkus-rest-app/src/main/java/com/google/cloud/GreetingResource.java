@@ -20,6 +20,14 @@ public class GreetingResource {
     @Path("/user")
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser() {
+        
         return User.builder().age(10).name("JB").build();
     }
+
+  
+
+    
+
+
+
 }
